@@ -4,6 +4,7 @@ import graphviz
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Dense, Conv2D, MaxPooling2D, Flatten, LSTM
 import numpy as np
+import pydot
 
 # Define a function to create a neural network graph for Fully Connected Neural Network (FCNN)
 def create_fcnn(num_layers, num_neurons, activation_function):
