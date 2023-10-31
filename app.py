@@ -85,4 +85,4 @@ elif network_type == "Recurrent Neural Network (RNN)":
 model = get_model(network_type, num_layers, num_neurons, activation_function, kernel_size, pooling_size, num_time_steps)
 
 # Display network architecture using Graphviz
-st.graphviz_chart(tensorflow.keras.utils.model_to_dot(model, show_shapes=True, expand_nested=True))
+st.graphviz_chart(tf.keras.utils.model_to_dot(model, show_shapes=True, expand_nested=True))
