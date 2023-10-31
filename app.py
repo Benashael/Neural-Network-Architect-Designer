@@ -5,6 +5,7 @@ from tensorflow.keras.layers import Input, Dense, Conv2D, MaxPooling2D, Flatten,
 import graphviz
 import numpy as np
 import pydot
+from PIL import Image
 
 # Define a function to create a neural network graph for Fully Connected Neural Network (FCNN)
 def create_fcnn(num_layers, num_neurons, activation_function):
@@ -85,9 +86,12 @@ try:
         with st.spinner("Building the model..."):
             model = get_model(network_type, num_layers, num_neurons, activation_function, kernel_size, pooling_size, num_time_steps)
 
-    # Display network architecture using Graphviz
-    if network_type in ["Fully Connected Neural Network (FCNN)", "LeNet", "Convolutional Neural Network (CNN)", "Recurrent Neural Network (RNN)"]:
-        st.graphviz_chart(tf.keras.utils.model_to_dot(model, show_shapes=True, expand_nested=True))
+         # Convert the model diagram to an image
+        model_diagram = tf.keras.utils.model_to_dot(model, show_shapes=True, expand_nested=True)
+        model_image = Image.open(graphviz.Source(model_diagram.to_string()).pipe(format='png'))
+
+        # Display the model image
+        st.image(model_image)
 
 except Exception as e:
     st.error(f"An error occurred: {e}")
