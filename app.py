@@ -48,7 +48,17 @@ def create_rnn(num_time_steps):
     model = Model(inputs=inputs, outputs=outputs)
     return model
 
-# Streamlit app
+@st.cache_resource
+def get_model(network_type, num_layers, num_neurons, activation_function, kernel_size, pooling_size, num_time_steps):
+    if network_type == "Fully Connected Neural Network (FCNN)":
+        return create_fcnn(num_layers, num_neurons, activation_function)
+    elif network_type == "LeNet":
+        return create_lenet()
+    elif network_type == "Convolutional Neural Network (CNN)":
+        return create_cnn(kernel_size, pooling_size)
+    elif network_type == "Recurrent Neural Network (RNN)":
+        return create_rnn(num_time_steps)# Streamlit app
+
 st.title("Neural Network Visualization App")
 
 # User input
